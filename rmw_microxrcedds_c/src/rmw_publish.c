@@ -38,16 +38,16 @@ rmw_publish(
   (void)allocation;
   rmw_ret_t ret = RMW_RET_OK;
   if (!publisher) {
-    printf("%s:%d: publisher pointer is null\n\r", __FILE__, __LINE__);
+    printf("RMW_PUBLISH:%d: publisher pointer is null\n\r", __LINE__);
     ret = RMW_RET_ERROR;
   } else if (!ros_message) {
-    printf("%s:%d: ros_message pointer is null\n\r", __FILE__, __LINE__);
+    printf("RMW_PUBLISH:%d: ros_message pointer is null\n\r", __LINE__);
     ret = RMW_RET_ERROR;
   } else if (!is_uxrce_rmw_identifier_valid(publisher->implementation_identifier)) {
-    printf("%s:%d: publisher handle not from this implementation\n\r", __FILE__, __LINE__);
+    printf("RMW_PUBLISH:%d: publisher handle not from this implementation\n\r", __LINE__);
     ret = RMW_RET_ERROR;
   } else if (!publisher->data) {
-    printf("%s:%d: publisher imp is null\n\r", __FILE__, __LINE__);
+    printf("RMW_PUBLISH:%d: publisher imp is null\n\r", __LINE__);
     ret = RMW_RET_ERROR;
   } else {
     rmw_uxrce_publisher_t * custom_publisher = (rmw_uxrce_publisher_t *)publisher->data;
@@ -86,7 +86,7 @@ rmw_publish(
       }
     }
     if (!written) {
-      printf("%s:%d: error publishing message\n\r", __FILE__, __LINE__);
+      printf("RMW_PUBLISH:%d: error publishing message\n\r", __LINE__);
       ret = RMW_RET_ERROR;
     }
   }
@@ -102,7 +102,7 @@ rmw_publish_serialized_message(
   (void)publisher;
   (void)serialized_message;
   (void)allocation;
-  printf("%s:%d: function not implemented\n\r", __FILE__, __LINE__);
+  printf("RMW_PUBLISH:%d: function not implemented\n\r", __LINE__);
   return RMW_RET_UNSUPPORTED;
 }
 
@@ -116,7 +116,7 @@ rmw_publish_loaned_message(
   (void)ros_message;
   (void)allocation;
 
-  printf("%s:%d: function not implemented\n\r", __FILE__, __LINE__);
+  printf("RMW_PUBLISH:%d: function not implemented\n\r", __LINE__);
   return RMW_RET_UNSUPPORTED;
 }
 
@@ -128,6 +128,6 @@ rmw_publisher_wait_for_all_acked(
   (void)publisher;
   (void)wait_timeout;
 
-  printf("%s:%d: function not implemented", __FILE__, __LINE__);
+  printf("RMW_PUBLISH:%d: function not implemented", __LINE__);
   return RMW_RET_UNSUPPORTED;
 }
