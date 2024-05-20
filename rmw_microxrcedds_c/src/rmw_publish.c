@@ -15,6 +15,7 @@
 #include <rmw/rmw.h>
 #include <rmw_microros/rmw_microros.h>
 #include <uxr/client/profile/multithread/multithread.h>
+#include <stdio.h>
 
 #include "./rmw_microros_internal/types.h"
 #include "./rmw_microros_internal/utils.h"
@@ -37,16 +38,16 @@ rmw_publish(
   (void)allocation;
   rmw_ret_t ret = RMW_RET_OK;
   if (!publisher) {
-    RMW_UROS_TRACE_MESSAGE("publisher pointer is null")
+    printf("publisher pointer is null");
     ret = RMW_RET_ERROR;
   } else if (!ros_message) {
-    RMW_UROS_TRACE_MESSAGE("ros_message pointer is null")
+    printf("ros_message pointer is null");
     ret = RMW_RET_ERROR;
   } else if (!is_uxrce_rmw_identifier_valid(publisher->implementation_identifier)) {
-    RMW_UROS_TRACE_MESSAGE("publisher handle not from this implementation")
+    printf("publisher handle not from this implementation");
     ret = RMW_RET_ERROR;
   } else if (!publisher->data) {
-    RMW_UROS_TRACE_MESSAGE("publisher imp is null");
+    printf("publisher imp is null");
     ret = RMW_RET_ERROR;
   } else {
     rmw_uxrce_publisher_t * custom_publisher = (rmw_uxrce_publisher_t *)publisher->data;
@@ -85,7 +86,7 @@ rmw_publish(
       }
     }
     if (!written) {
-      RMW_UROS_TRACE_MESSAGE("error publishing message")
+      printf("error publishing message");
       ret = RMW_RET_ERROR;
     }
   }
@@ -101,7 +102,7 @@ rmw_publish_serialized_message(
   (void)publisher;
   (void)serialized_message;
   (void)allocation;
-  RMW_UROS_TRACE_MESSAGE("function not implemented")
+  printf("function not implemented");
   return RMW_RET_UNSUPPORTED;
 }
 
@@ -115,7 +116,7 @@ rmw_publish_loaned_message(
   (void)ros_message;
   (void)allocation;
 
-  RMW_UROS_TRACE_MESSAGE("function not implemented")
+  printf("function not implemented");
   return RMW_RET_UNSUPPORTED;
 }
 
@@ -127,6 +128,6 @@ rmw_publisher_wait_for_all_acked(
   (void)publisher;
   (void)wait_timeout;
 
-  RMW_SET_ERROR_MSG("function not implemented");
+  printf("function not implemented");
   return RMW_RET_UNSUPPORTED;
 }
